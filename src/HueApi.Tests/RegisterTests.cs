@@ -1,9 +1,6 @@
 using HueApi.Models.Exceptions;
-using HueApi.Models.Requests;
 using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace HueApi.Tests
@@ -32,11 +29,11 @@ namespace HueApi.Tests
         Assert.IsNotNull(result.Ip);
         Assert.IsNotNull(result.Username);
       }
-      catch(LinkButtonNotPressedException ex)
+      catch (LinkButtonNotPressedException ex)
       {
         Assert.IsNotNull(ex);
       }
-      
+
     }
   }
 }

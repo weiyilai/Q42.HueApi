@@ -7,7 +7,7 @@ Over **400k downloads** on NuGet (Q42.Hue + HueApi)
 
 This library covers all the Philips hue API calls! You can set the state of your lights, update the Bridge configuration, create groups, schedules etc.
 
-This library targets `.net 8` and `.net 9`!  
+This library targets `.net 8`, `.net 9` and `.net 10`!  
 Download directly from NuGet:
 - Clip API v2: [HueApi on NuGet](https://nuget.org/packages/HueApi) (works with Hue Bridge Pro!)
 
@@ -38,9 +38,10 @@ Do **not** use the `Q42` prefixed packages anymore. They target old APIs which w
 ## How to use?
 Some basic usage examples
 
-Use the LocalHueApi:
+Locate bridges in your network:
 ```cs
-var localHueApi = new LocalHueApi("BRIDGE_IP", "KEY");
+IBridgeLocator locator = new HttpBridgeLocator(); //Or: LocalNetworkScanBridgeLocator, MdnsBridgeLocator, MUdpBasedBridgeLocator
+var bridges = await locator.LocateBridgesAsync(TimeSpan.FromSeconds(5));
 ```
 
 Register your application
@@ -52,6 +53,11 @@ var regResult = await LocalHueClient.RegisterAsync("BRIDGE_IP", "mypersonalappna
 
 //Save the app key for later use and use it to initialize LocalHueApi
 var appKey = regResult.Username;
+```
+
+Use the LocalHueApi:
+```cs
+var localHueApi = new LocalHueApi("BRIDGE_IP", "KEY");
 ```
 
 Change the lights:

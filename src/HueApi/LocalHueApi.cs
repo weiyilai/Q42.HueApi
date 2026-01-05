@@ -1,14 +1,9 @@
-using HueApi.Models;
 using HueApi.Models.Clip;
 using HueApi.Models.Exceptions;
-using HueApi.Models.Requests;
 using HueApi.Models.Responses;
-using System;
 using System.Net.Http.Json;
-using System.Security;
 using System.Text.Json;
 using System.Text.Json.Nodes;
-using System.Text.Json.Serialization;
 
 namespace HueApi
 {
@@ -74,7 +69,7 @@ namespace HueApi
               }
             }
           }
-          catch(TaskCanceledException)
+          catch (TaskCanceledException)
           {
             //Ignore
           }
@@ -173,6 +168,37 @@ namespace HueApi
       }
 
       return null;
+    }
+
+    /// <summary>
+    /// Get bridge config
+    /// </summary>
+    /// <returns>BridgeConfig object</returns>
+    public async Task<BridgeConfig?> GetConfigAsync()
+    {
+      //Not needed to check if initialized, can be used without API key
+      string url = "api/config";
+
+      //It returns more data if the key is provided
+      if (!string.IsNullOrEmpty(this.key))
+        url = $"api/{this.key}/config";
+
+      var client = GetConfiguredHttpClient(ip);
+      string stringResult = await client.GetStringAsync(url).ConfigureAwait(false);
+      JsonNode? node = JsonNode.Parse(stringResult);
+      BridgeConfig? config = null;
+      if (node is JsonObject)
+      {
+        config = JsonSerializer.Deserialize<BridgeConfig>(node);
+
+        if (config != null)
+        {
+          //Fix whitelist IDs
+          foreach (var whitelist in config.WhiteList)
+            whitelist.Value.Id = whitelist.Key;
+        }
+      }
+      return config;
     }
 
     private static HttpClient GetConfiguredHttpClient(string ip, HttpClient? client = null, TimeSpan? timeout = null)

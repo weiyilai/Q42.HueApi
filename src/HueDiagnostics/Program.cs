@@ -1,6 +1,5 @@
 using HueApi;
 using HueApi.BridgeLocator;
-using HueApi.Models;
 using HueApi.Models.Requests;
 using HueDiagnostics.Models;
 using KellermanSoftware.CompareNetObjects;
@@ -36,7 +35,7 @@ namespace HueDiagnostics
       var bridges = await locator.LocateBridgesAsync(TimeSpan.FromSeconds(5));
 
       Console.WriteLine($"Found {bridges.Count()}");
-      foreach(var bridge in bridges)
+      foreach (var bridge in bridges)
       {
         Console.WriteLine($"{bridge.IpAddress} | {bridge.BridgeId}");
       }
@@ -45,7 +44,7 @@ namespace HueDiagnostics
       var missingConfig = bridges.Select(x => x.IpAddress).Except(bridgesConfig.Select(x => x.Ip));
       var missingHttp = bridgesConfig.Select(x => x.Ip).Except(bridges.Select(x => x.IpAddress));
 
-      foreach(var missing in missingConfig)
+      foreach (var missing in missingConfig)
       {
         Console.WriteLine($"{missing} is missing in appsettings.json");
       }
@@ -84,12 +83,10 @@ namespace HueDiagnostics
           //Get config
           try
           {
-            var deviceDataResult = await client.Device.GetAllAsync();
-
-            var deviceData = deviceDataResult.Data.FirstOrDefault();
-            diagData.Device = deviceData;
+            var config = await client.GetConfigAsync();
+            diagData.BridgeConfig = config;
           }
-          catch(Exception ex)
+          catch (Exception ex)
           {
             Console.WriteLine($"Unable to get bridge config for: {bridgeIp}");
             Console.WriteLine($"Exception: {ex}");
@@ -108,7 +105,7 @@ namespace HueDiagnostics
         else if (diagDataList.Count > 1)
         {
           Console.WriteLine($"Comparing values...");
-       
+
           var first = diagDataList.First();
 
           foreach (var diag in diagDataList.Skip(1))
@@ -144,6 +141,9 @@ namespace HueDiagnostics
           //Get config
           try
           {
+            var config = await client.GetConfigAsync();
+            diagData.BridgeConfig = config;
+
             var deviceDataResult = await client.Device.GetAllAsync();
             var bridgeDataResult = await client.Bridge.GetAllAsync();
 
@@ -152,6 +152,21 @@ namespace HueDiagnostics
 
             var deviceData = deviceDataResult.Data.FirstOrDefault();
             diagData.Device = deviceData;
+
+            if (config != null)
+            {
+              Console.WriteLine($"API: {config.ApiVersion}");
+              Console.WriteLine($"LocalTime: {config.LocalTime}");
+              Console.WriteLine($"SoftwareVersion: {config.SoftwareVersion}");
+
+              Console.WriteLine($"SoftwareUpdate:");
+              Console.WriteLine($"State: {config.SoftwareUpdate2?.State}");
+              Console.WriteLine($"LastChange: {config.SoftwareUpdate2?.LastChange}");
+              Console.WriteLine($"AutoInstall: {config.SoftwareUpdate2?.AutoInstall?.On}");
+              Console.WriteLine($"AutoInstall: {config.SoftwareUpdate2?.AutoInstall?.UpdateTime}");
+              Console.WriteLine();
+
+            }
 
             if (deviceData != null)
             {
