@@ -1,18 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json.Linq;
-using Q42.HueApi.Extensions;
 using Q42.HueApi.Interfaces;
-using Newtonsoft.Json;
-using System.Globalization;
+using System;
+using System.Net;
 using System.Net.Http;
-using Q42.HueApi.Models.Groups;
-using Q42.HueApi.Models;
-using Newtonsoft.Json.Serialization;
+using System.Threading.Tasks;
 
 namespace Q42.HueApi
 {
@@ -31,7 +21,7 @@ namespace Q42.HueApi
 
     public bool IsStreamingInitialized { get; protected set; }
 
-    public bool UseHttps { get; set; }
+    public bool UseHttps { get; set; } = true;
 
 
     /// <summary>
@@ -126,6 +116,41 @@ namespace Q42.HueApi
       : this(ip, appKey)
     {
       InitializeStreaming(clientKey);
+    }
+
+    public override Task<HttpClient> GetHttpClient()
+    {
+      // return per-thread HttpClient
+      if (_httpClient == null)
+      {
+        _httpClient = CreateInsecureHttpClient();
+      }
+
+      return Task.FromResult(_httpClient);
+    }
+
+    /// <summary>
+    /// Ignores SSL certificate errors (for https connections)
+    /// </summary>
+    /// <returns></returns>
+    private HttpClient CreateInsecureHttpClient()
+    {
+#if NET45
+      // Global override (ONLY option on .NET Framework 4.5)
+      ServicePointManager.ServerCertificateValidationCallback +=
+          (sender, certificate, chain, sslPolicyErrors) => true;
+
+      return new HttpClient();
+
+#else
+        var handler = new HttpClientHandler
+        {
+            ServerCertificateCustomValidationCallback =
+                HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
+        };
+
+        return new HttpClient(handler, disposeHandler: true);
+#endif
     }
 
   }
