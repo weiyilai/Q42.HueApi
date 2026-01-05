@@ -183,7 +183,6 @@ namespace HueApi
       if (!string.IsNullOrEmpty(this.key))
         url = $"api/{this.key}/config";
 
-      var client = GetConfiguredHttpClient(ip);
       string stringResult = await client.GetStringAsync(url).ConfigureAwait(false);
       JsonNode? node = JsonNode.Parse(stringResult);
       BridgeConfig? config = null;
