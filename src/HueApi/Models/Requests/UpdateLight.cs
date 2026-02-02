@@ -54,6 +54,9 @@ namespace HueApi.Models.Requests
     [JsonPropertyName("content_configuration")]
     public ContentConfiguration? ContentConfiguration { get; set; }
 
+    [JsonPropertyName("geometry")]
+    public Geometry? Geometry { get; set; }
+
   }
 
   public class UpdateAlert

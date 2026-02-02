@@ -585,7 +585,7 @@ pre code {
 <li><strong>dimming</strong>: <em>(object)</em>
 <ul>
 <li><strong>brightness</strong>: <em><span class="required">required</span>(number &#8211; maximum: 100)</em>
-<p>Brightness percentage. value cannot be 0, writing 0 changes it to lowest possible brightness</p>
+<p>Brightness percentage. Value 0 is the lowest possible brightness.</p>
 <p><strong>Example</strong>:</p>
 <div class="examples">
 <pre><code>80</code></pre>
@@ -1041,7 +1041,7 @@ pre code {
 <li><strong>dimming</strong>: <em>(object)</em>
 <ul>
 <li><strong>brightness</strong>: <em><span class="required">required</span>(number &#8211; maximum: 100)</em>
-<p>Brightness percentage. value cannot be 0, writing 0 changes it to lowest possible brightness</p>
+<p>Brightness percentage. Value 0 is the lowest possible brightness.</p>
 <p><strong>Example</strong>:</p>
 <div class="examples">
 <pre><code>80</code></pre>
@@ -1136,6 +1136,29 @@ pre code {
 </li>
 <li><strong>order</strong>: <em><span class="required">required</span>(one of forward, reversed)</em></li>
 </ul>
+</li>
+</ul>
+</li>
+<li><strong>geometry</strong>: <em>(object)</em>
+<p>Feature describing the geometry a light service.</p>
+<ul>
+<li><strong>pixel_positions</strong>: <em>(array of PixelPosition &#8211; maxItems: 5)</em>
+<p><strong>Items</strong>: PixelPosition</p>
+<div class="items">
+<ul>
+<li><strong>index</strong>: <em><span class="required">required</span>(integer &#8211; minimum: 0)</em>
+<p>Index of the pixel to which the position belongs, use 0 for non-gradient lights</p>
+</li>
+<li><strong>position</strong>: <em><span class="required">required</span>(object)</em>
+<p>Position of the pixel in 3D space. Range of coordinates is -100 to 100 meters.</p>
+<ul>
+<li><strong>x</strong>: <em><span class="required">required</span>(number)</em></li>
+<li><strong>y</strong>: <em><span class="required">required</span>(number)</em></li>
+<li><strong>z</strong>: <em><span class="required">required</span>(number)</em></li>
+</ul>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </li>
@@ -1427,7 +1450,7 @@ pre code {
 <li><strong>dimming</strong>: <em>(object)</em>
 <ul>
 <li><strong>brightness</strong>: <em>(number &#8211; maximum: 100)</em>
-<p>Brightness percentage. value cannot be 0, writing 0 changes it to lowest possible brightness</p>
+<p>Brightness percentage. Value 0 is the lowest possible brightness.</p>
 <p><strong>Example</strong>:</p>
 <div class="examples">
 <pre><code>80</code></pre>
@@ -1784,7 +1807,7 @@ pre code {
 <li><strong>dimming</strong>: <em>(object)</em>
 <ul>
 <li><strong>brightness</strong>: <em>(number &#8211; maximum: 100)</em>
-<p>Brightness percentage. value cannot be 0, writing 0 changes it to lowest possible brightness</p>
+<p>Brightness percentage. Value 0 is the lowest possible brightness.</p>
 <p><strong>Example</strong>:</p>
 <div class="examples">
 <pre><code>80</code></pre>
@@ -1860,17 +1883,40 @@ pre code {
 <li><strong>content_configuration</strong>: <em>(object)</em>
 <p>Configuration parameters that affect how content is deployed on a product</p>
 <ul>
-<li><strong>orientation</strong>: <em><span class="required">required</span>(object)</em>
+<li><strong>orientation</strong>: <em>(object)</em>
 <p>Orientation for content deployed on pixelated products when applicable (e.g. sunrise, candle)</p>
 <ul>
 <li><strong>orientation</strong>: <em>(one of horizontal, vertical)</em></li>
 </ul>
 </li>
-<li><strong>order</strong>: <em><span class="required">required</span>(object)</em>
+<li><strong>order</strong>: <em>(object)</em>
 <p>Order in which the content is represented on the pixels</p>
 <ul>
 <li><strong>order</strong>: <em>(one of forward, reversed)</em></li>
 </ul>
+</li>
+</ul>
+</li>
+<li><strong>geometry</strong>: <em>(object)</em>
+<p>Feature describing the geometry a light service.</p>
+<ul>
+<li><strong>pixel_positions</strong>: <em>(array of PixelPosition &#8211; maxItems: 5)</em>
+<p><strong>Items</strong>: PixelPosition</p>
+<div class="items">
+<ul>
+<li><strong>index</strong>: <em><span class="required">required</span>(integer &#8211; minimum: 0)</em>
+<p>Index of the pixel to which the position belongs, use 0 for non-gradient lights</p>
+</li>
+<li><strong>position</strong>: <em><span class="required">required</span>(object)</em>
+<p>Position of the pixel in 3D space. Range of coordinates is -100 to 100 meters.</p>
+<ul>
+<li><strong>x</strong>: <em><span class="required">required</span>(number)</em></li>
+<li><strong>y</strong>: <em><span class="required">required</span>(number)</em></li>
+<li><strong>z</strong>: <em><span class="required">required</span>(number)</em></li>
+</ul>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </li>
@@ -2247,7 +2293,7 @@ pre code {
 <li><strong>dimming</strong>: <em>(object)</em>
 <ul>
 <li><strong>brightness</strong>: <em><span class="required">required</span>(number &#8211; maximum: 100)</em>
-<p>Brightness percentage. value cannot be 0, writing 0 changes it to lowest possible brightness</p>
+<p>Brightness percentage. Value 0 is the lowest possible brightness.</p>
 <p><strong>Example</strong>:</p>
 <div class="examples">
 <pre><code>80</code></pre>
@@ -2703,7 +2749,7 @@ pre code {
 <li><strong>dimming</strong>: <em>(object)</em>
 <ul>
 <li><strong>brightness</strong>: <em><span class="required">required</span>(number &#8211; maximum: 100)</em>
-<p>Brightness percentage. value cannot be 0, writing 0 changes it to lowest possible brightness</p>
+<p>Brightness percentage. Value 0 is the lowest possible brightness.</p>
 <p><strong>Example</strong>:</p>
 <div class="examples">
 <pre><code>80</code></pre>
@@ -2798,6 +2844,29 @@ pre code {
 </li>
 <li><strong>order</strong>: <em><span class="required">required</span>(one of forward, reversed)</em></li>
 </ul>
+</li>
+</ul>
+</li>
+<li><strong>geometry</strong>: <em>(object)</em>
+<p>Feature describing the geometry a light service.</p>
+<ul>
+<li><strong>pixel_positions</strong>: <em>(array of PixelPosition &#8211; maxItems: 5)</em>
+<p><strong>Items</strong>: PixelPosition</p>
+<div class="items">
+<ul>
+<li><strong>index</strong>: <em><span class="required">required</span>(integer &#8211; minimum: 0)</em>
+<p>Index of the pixel to which the position belongs, use 0 for non-gradient lights</p>
+</li>
+<li><strong>position</strong>: <em><span class="required">required</span>(object)</em>
+<p>Position of the pixel in 3D space. Range of coordinates is -100 to 100 meters.</p>
+<ul>
+<li><strong>x</strong>: <em><span class="required">required</span>(number)</em></li>
+<li><strong>y</strong>: <em><span class="required">required</span>(number)</em></li>
+<li><strong>z</strong>: <em><span class="required">required</span>(number)</em></li>
+</ul>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </li>
@@ -3071,7 +3140,7 @@ pre code {
 <li><strong>dimming</strong>: <em>(object)</em>
 <ul>
 <li><strong>brightness</strong>: <em><span class="required">required</span>(number &#8211; maximum: 100)</em>
-<p>Brightness percentage. value cannot be 0, writing 0 changes it to lowest possible brightness</p>
+<p>Brightness percentage. Value 0 is the lowest possible brightness.</p>
 <p><strong>Example</strong>:</p>
 <div class="examples">
 <pre><code>80</code></pre>
@@ -3376,7 +3445,7 @@ pre code {
 <li><strong>dimming</strong>: <em><span class="required">required</span>(object)</em>
 <ul>
 <li><strong>brightness</strong>: <em><span class="required">required</span>(number &#8211; maximum: 100)</em>
-<p>Brightness percentage. value cannot be 0, writing 0 changes it to lowest possible brightness</p>
+<p>Brightness percentage. Value 0 is the lowest possible brightness.</p>
 <p><strong>Example</strong>:</p>
 <div class="examples">
 <pre><code>80</code></pre>
@@ -3398,7 +3467,7 @@ pre code {
 <div class="items">
 <ul>
 <li><strong>brightness</strong>: <em><span class="required">required</span>(number &#8211; maximum: 100)</em>
-<p>Brightness percentage. value cannot be 0, writing 0 changes it to lowest possible brightness</p>
+<p>Brightness percentage. Value 0 is the lowest possible brightness.</p>
 <p><strong>Example</strong>:</p>
 <div class="examples">
 <pre><code>80</code></pre>
@@ -3437,7 +3506,7 @@ pre code {
 <li><strong>dimming</strong>: <em><span class="required">required</span>(object)</em>
 <ul>
 <li><strong>brightness</strong>: <em><span class="required">required</span>(number &#8211; maximum: 100)</em>
-<p>Brightness percentage. value cannot be 0, writing 0 changes it to lowest possible brightness</p>
+<p>Brightness percentage. Value 0 is the lowest possible brightness.</p>
 <p><strong>Example</strong>:</p>
 <div class="examples">
 <pre><code>80</code></pre>
@@ -3875,7 +3944,7 @@ pre code {
 <li><strong>dimming</strong>: <em>(object)</em>
 <ul>
 <li><strong>brightness</strong>: <em><span class="required">required</span>(number &#8211; maximum: 100)</em>
-<p>Brightness percentage. value cannot be 0, writing 0 changes it to lowest possible brightness</p>
+<p>Brightness percentage. Value 0 is the lowest possible brightness.</p>
 <p><strong>Example</strong>:</p>
 <div class="examples">
 <pre><code>80</code></pre>
@@ -4180,7 +4249,7 @@ pre code {
 <li><strong>dimming</strong>: <em><span class="required">required</span>(object)</em>
 <ul>
 <li><strong>brightness</strong>: <em><span class="required">required</span>(number &#8211; maximum: 100)</em>
-<p>Brightness percentage. value cannot be 0, writing 0 changes it to lowest possible brightness</p>
+<p>Brightness percentage. Value 0 is the lowest possible brightness.</p>
 <p><strong>Example</strong>:</p>
 <div class="examples">
 <pre><code>80</code></pre>
@@ -4202,7 +4271,7 @@ pre code {
 <div class="items">
 <ul>
 <li><strong>brightness</strong>: <em><span class="required">required</span>(number &#8211; maximum: 100)</em>
-<p>Brightness percentage. value cannot be 0, writing 0 changes it to lowest possible brightness</p>
+<p>Brightness percentage. Value 0 is the lowest possible brightness.</p>
 <p><strong>Example</strong>:</p>
 <div class="examples">
 <pre><code>80</code></pre>
@@ -4241,7 +4310,7 @@ pre code {
 <li><strong>dimming</strong>: <em><span class="required">required</span>(object)</em>
 <ul>
 <li><strong>brightness</strong>: <em><span class="required">required</span>(number &#8211; maximum: 100)</em>
-<p>Brightness percentage. value cannot be 0, writing 0 changes it to lowest possible brightness</p>
+<p>Brightness percentage. Value 0 is the lowest possible brightness.</p>
 <p><strong>Example</strong>:</p>
 <div class="examples">
 <pre><code>80</code></pre>
@@ -4896,7 +4965,7 @@ pre code {
 <li><strong>dimming</strong>: <em>(object)</em>
 <ul>
 <li><strong>brightness</strong>: <em>(number &#8211; maximum: 100)</em>
-<p>Brightness percentage. value cannot be 0, writing 0 changes it to lowest possible brightness</p>
+<p>Brightness percentage. Value 0 is the lowest possible brightness.</p>
 <p><strong>Example</strong>:</p>
 <div class="examples">
 <pre><code>80</code></pre>
@@ -5201,7 +5270,7 @@ pre code {
 <li><strong>dimming</strong>: <em><span class="required">required</span>(object)</em>
 <ul>
 <li><strong>brightness</strong>: <em>(number &#8211; maximum: 100)</em>
-<p>Brightness percentage. value cannot be 0, writing 0 changes it to lowest possible brightness</p>
+<p>Brightness percentage. Value 0 is the lowest possible brightness.</p>
 <p><strong>Example</strong>:</p>
 <div class="examples">
 <pre><code>80</code></pre>
@@ -5223,7 +5292,7 @@ pre code {
 <div class="items">
 <ul>
 <li><strong>brightness</strong>: <em>(number &#8211; maximum: 100)</em>
-<p>Brightness percentage. value cannot be 0, writing 0 changes it to lowest possible brightness</p>
+<p>Brightness percentage. Value 0 is the lowest possible brightness.</p>
 <p><strong>Example</strong>:</p>
 <div class="examples">
 <pre><code>80</code></pre>
@@ -5262,7 +5331,7 @@ pre code {
 <li><strong>dimming</strong>: <em><span class="required">required</span>(object)</em>
 <ul>
 <li><strong>brightness</strong>: <em>(number &#8211; maximum: 100)</em>
-<p>Brightness percentage. value cannot be 0, writing 0 changes it to lowest possible brightness</p>
+<p>Brightness percentage. Value 0 is the lowest possible brightness.</p>
 <p><strong>Example</strong>:</p>
 <div class="examples">
 <pre><code>80</code></pre>
@@ -5371,7 +5440,7 @@ pre code {
 <p>override the scene dimming/brightness</p>
 <ul>
 <li><strong>brightness</strong>: <em>(number &#8211; maximum: 100)</em>
-<p>Brightness percentage. value cannot be 0, writing 0 changes it to lowest possible brightness</p>
+<p>Brightness percentage. Value 0 is the lowest possible brightness.</p>
 <p><strong>Example</strong>:</p>
 <div class="examples">
 <pre><code>80</code></pre>
@@ -5745,7 +5814,7 @@ pre code {
 <li><strong>dimming</strong>: <em>(object)</em>
 <ul>
 <li><strong>brightness</strong>: <em><span class="required">required</span>(number &#8211; maximum: 100)</em>
-<p>Brightness percentage. value cannot be 0, writing 0 changes it to lowest possible brightness</p>
+<p>Brightness percentage. Value 0 is the lowest possible brightness.</p>
 <p><strong>Example</strong>:</p>
 <div class="examples">
 <pre><code>80</code></pre>
@@ -6050,7 +6119,7 @@ pre code {
 <li><strong>dimming</strong>: <em><span class="required">required</span>(object)</em>
 <ul>
 <li><strong>brightness</strong>: <em><span class="required">required</span>(number &#8211; maximum: 100)</em>
-<p>Brightness percentage. value cannot be 0, writing 0 changes it to lowest possible brightness</p>
+<p>Brightness percentage. Value 0 is the lowest possible brightness.</p>
 <p><strong>Example</strong>:</p>
 <div class="examples">
 <pre><code>80</code></pre>
@@ -6072,7 +6141,7 @@ pre code {
 <div class="items">
 <ul>
 <li><strong>brightness</strong>: <em><span class="required">required</span>(number &#8211; maximum: 100)</em>
-<p>Brightness percentage. value cannot be 0, writing 0 changes it to lowest possible brightness</p>
+<p>Brightness percentage. Value 0 is the lowest possible brightness.</p>
 <p><strong>Example</strong>:</p>
 <div class="examples">
 <pre><code>80</code></pre>
@@ -6111,7 +6180,7 @@ pre code {
 <li><strong>dimming</strong>: <em><span class="required">required</span>(object)</em>
 <ul>
 <li><strong>brightness</strong>: <em><span class="required">required</span>(number &#8211; maximum: 100)</em>
-<p>Brightness percentage. value cannot be 0, writing 0 changes it to lowest possible brightness</p>
+<p>Brightness percentage. Value 0 is the lowest possible brightness.</p>
 <p><strong>Example</strong>:</p>
 <div class="examples">
 <pre><code>80</code></pre>
@@ -10310,7 +10379,7 @@ pre code {
 <p>Joined dimming control &#8211; &#8220;dimming.brightness&#8221; contains average brightness of group containing turned-on lights only.</p>
 <ul>
 <li><strong>brightness</strong>: <em><span class="required">required</span>(number &#8211; maximum: 100)</em>
-<p>Brightness percentage. value cannot be 0, writing 0 changes it to lowest possible brightness</p>
+<p>Brightness percentage. Value 0 is the lowest possible brightness.</p>
 <p><strong>Example</strong>:</p>
 <div class="examples">
 <pre><code>80</code></pre>
@@ -10646,7 +10715,7 @@ pre code {
 <p>Joined dimming control &#8211; &#8220;dimming.brightness&#8221; contains average brightness of group containing turned-on lights only.</p>
 <ul>
 <li><strong>brightness</strong>: <em>(number &#8211; maximum: 100)</em>
-<p>Brightness percentage. value cannot be 0, writing 0 changes it to lowest possible brightness</p>
+<p>Brightness percentage. Value 0 is the lowest possible brightness.</p>
 <p><strong>Example</strong>:</p>
 <div class="examples">
 <pre><code>80</code></pre>
@@ -11155,7 +11224,7 @@ pre code {
 <p>Joined dimming control &#8211; &#8220;dimming.brightness&#8221; contains average brightness of group containing turned-on lights only.</p>
 <ul>
 <li><strong>brightness</strong>: <em><span class="required">required</span>(number &#8211; maximum: 100)</em>
-<p>Brightness percentage. value cannot be 0, writing 0 changes it to lowest possible brightness</p>
+<p>Brightness percentage. Value 0 is the lowest possible brightness.</p>
 <p><strong>Example</strong>:</p>
 <div class="examples">
 <pre><code>80</code></pre>
@@ -31973,6 +32042,9 @@ pre code {
 </ul>
 </div>
 </li>
+<li><strong>equalization_factor</strong>: <em>(number &#8211; default: 1 &#8211; maximum: 1)</em>
+<p>Relative equalization factor applied to the entertainment service, to compensate for differences in brightness in the entertainment configuration. Value cannot be 0, writing 0 changes it to lowest possible value.</p>
+</li>
 </ul>
 </div>
 </li>
@@ -47352,10 +47424,10 @@ pre code {
 </html>
 
 <!--
-Performance optimized by W3 Total Cache. Learn more: https://www.boldgrid.com/w3-total-cache/
+Performance optimized by W3 Total Cache. Learn more: https://www.boldgrid.com/w3-total-cache/?utm_source=w3tc&utm_medium=footer_comment&utm_campaign=free_plugin
 
-Object Caching 56/118 objects using Memcached
-Database Caching 4/25 queries in 0.026 seconds using Memcached
+Object Caching 38/51 objects using Memcached
+Database Caching 4/27 queries in 0.041 seconds using Memcached
 
-Served from: developers.meethue.com @ 2025-09-08 15:29:07 by W3 Total Cache
+Served from: developers.meethue.com @ 2026-02-02 15:10:49 by W3 Total Cache
 -->

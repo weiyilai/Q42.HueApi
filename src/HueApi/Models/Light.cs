@@ -57,6 +57,9 @@ namespace HueApi.Models
     [JsonPropertyName("content_configuration")]
     public PowerUp? ContentConfiguration { get; set; }
 
+    [JsonPropertyName("geometry")]
+    public Geometry? Geometry { get; set; }
+
   }
 
   public class LightProductData
